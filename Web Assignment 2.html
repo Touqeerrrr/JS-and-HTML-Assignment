@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assignment</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding: 20px;
+    }
+    h2, h3, h4 {
+      color: navy;
+    }
+    button, input[type="text"] {
+      padding: 5px 10px;
+      margin: 5px;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Header Time: <span id="headerTime"></span></h2>
+
+  <h3>Bulb Control</h3>
+  <img id="bulb" src="https://www.w3schools.com/js/pic_bulboff.gif" width="100"><br>
+
+  <input type="radio" name="bulb" onclick="turnOn()"> On
+  <input type="radio" name="bulb" onclick="turnOff()"> Off<br><br>
+
+  <button onclick="turnOn()">Turn On</button>
+  <button onclick="turnOff()">Turn Off</button><br><br>
+
+  <input type="checkbox" id="bulbCheck" onchange="checkboxControl()"> Checkbox<br><br>
+
+  <button onclick="toggleBulb()">Toggle Bulb</button>
+
+  <h3>Enter Your Name</h3>
+  <input type="text" id="nameBox">
+  <button onclick="showName()">Show</button>
+
+  <h1 id="nameH1"></h1>
+  <p id="nameP"></p>
+  <div id="nameDiv"></div>
+
+  <h4>Footer Time: <span id="footerTime"></span></h4>
+
+  <script>
+    let bulbOn = false;
+
+    function turnOn() {
+      document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulbon.gif";
+      bulbOn = true;
+    }
+
+    function turnOff() {
+      document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulboff.gif";
+      bulbOn = false;
+    }
+
+    function toggleBulb() {
+      if (bulbOn) {
+        turnOff();
+      } else {
+        turnOn();
+      }
+      document.getElementById("bulbCheck").checked = bulbOn;
+    }
+
+    function checkboxControl() {
+      if (document.getElementById("bulbCheck").checked) {
+        turnOn();
+      } else {
+        turnOff();
+      }
+    }
+
+    function showName() {
+      let name = document.getElementById("nameBox").value;
+      document.getElementById("nameH1").innerText = name;
+      document.getElementById("nameP").innerText = "Hello " + name;
+      document.getElementById("nameDiv").innerText = "Welcome " + name;
+    }
+
+    function showTime() {
+      let now = new Date();
+      let time = now.toLocaleString();
+      document.getElementById("headerTime").innerText = time;
+      document.getElementById("footerTime").innerText = time;
+    }
+
+    setInterval(showTime, 1000);
+    showTime();
+  </script>
+
+</body>
+</html>
